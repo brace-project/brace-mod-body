@@ -26,5 +26,6 @@ class BodyMiddleware extends BraceAbstractMiddleware
             }
             return $request->getBody()->getContents();
         }));
+        return $handler->handle($request);
     }
 }
