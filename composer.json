@@ -1,0 +1,40 @@
+{
+    "name": "brace/mod-body",
+    "type": "library",
+    "description": "Provide body via dependency injection",
+    "keywords": ["Router", "Dependency Injection", "Di"],
+    "homepage": "https://infracamp.org",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Matthias Leuffen",
+            "email": "matthes@leuffen.de"
+        }
+    ],
+    "require": {
+        "php": ">=8.0",
+        "brace/core": "*",
+        "phore/hydrator": "*"
+    },
+
+    "require-dev": {
+        "phore/tester": "*",
+        "brace/mod-request-laminas": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Brace\\Assets\\": "src"
+        },
+        "files": [
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+        }
+    },
+    "minimum-stability": "dev",
+    "extra": {
+        "branch-alias": {
+        }
+    }
+}

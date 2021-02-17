@@ -1,0 +1,13 @@
+# Kickstart container config file - see https://gitub.com/infracamp/kickstart
+# Run ./kickstart.sh to start a development-container for this project
+version: 1
+from: "nfra/kickstart-flavor-php:unstable"
+command:
+  build:
+    - "composer update"
+  init:
+  test:
+    - "vendor/bin/phpunit --bootstrap vendor/autoload.php --testdox test"
+  run:
+  dev:
+    - "echo 'I am executed in dev mode'"

@@ -1,0 +1,9 @@
+test export-ignore
+.gitignore export-ignore
+phpunit.xml.dist export-ignore
+
+*.jpg binary
+*.png binary
+*.jpeg binary
+*.ico  binary
+*.pdf  binary
