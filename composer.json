@@ -23,7 +23,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Brace\\Assets\\": "src"
+            "Brace\\Body\\": "src"
         },
         "files": [
         ]
