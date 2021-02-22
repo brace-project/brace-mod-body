@@ -19,12 +19,16 @@ class BodyMiddleware extends BraceAbstractMiddleware
     {
         $this->app->define("body", new DiProducer(function (DiContainer $container, array $optParams = [], \ReflectionClass $class = null, bool $isArray = false) use ($request) {
 
+            
+
             $contentType = $request->getHeader("Content-type")[0];
             if (in_array($contentType, ["application/x-www-form-urlencoded", "multipart/form-data"])) {
                 $arrayData = $request->getParsedBody();
             } elseif (in_array ($contentType, ["application/json", "text/json"])) {
                 $arrayData = phore_json_decode($request->getBody()->getContents());
             } else {
+                if ($class === null && $isArray === false)
+                    return $request->getBody()->getContents();
                 throw new \InvalidArgumentException("Invalid input content type: '$contentType'");
             }
             
