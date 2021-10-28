@@ -7,6 +7,7 @@ namespace Brace\Body;
 use Brace\Core\Base\BraceAbstractMiddleware;
 use Phore\Di\Container\DiContainer;
 use Phore\Di\Container\Producer\DiProducer;
+use Phore\Hydrator\Ex\InvalidStructureException;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
@@ -47,7 +48,12 @@ class BodyMiddleware extends BraceAbstractMiddleware
             return (array)$request->getQueryParams();
         }
         if ($class !== null) {
-            return phore_hydrate($this->request->getQueryParams(), $class->getName());
+            try {
+                return phore_hydrate($this->request->getQueryParams(), $class->getName());
+
+            } catch (InvalidStructureException $e) {
+                throw new \InvalidArgumentException("Invalid/Missing query parameters: " . $e->getMessage(), 0, $e);
+            }
         }
         return $request->getUri()->getQuery();
     }
