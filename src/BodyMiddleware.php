@@ -22,7 +22,8 @@ class BodyMiddleware extends BraceAbstractMiddleware
 
     public function buildBody(DiContainer $container, array $optParams = [], \ReflectionClass $class = null, bool $isArray = false) {
         $request = $this->request;
-        $contentType = $request->getHeader("Content-type")[0] ?? throw new \InvalidArgumentException("Mod-body: Input content-type missing");
+        $contentType = $request->getHeader("Content-type")[0] ?? null;
+
         if (in_array($contentType, ["application/x-www-form-urlencoded", "multipart/form-data"])) {
             $arrayData = $request->getParsedBody();
         } elseif (in_array ($contentType, ["application/json", "text/json"])) {
